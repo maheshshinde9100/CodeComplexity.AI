@@ -87,10 +87,16 @@ const About = () => {
           <div className="section-divider"></div>
         </div>
         <div className="developer-card">
+
           <div className="developer-avatar">
-            <div className="avatar-glow"></div>
-            <span className="avatar-text">MS</span>
-          </div>
+  <div className="avatar-glow"></div>
+  <img 
+    src="/my-img.png" 
+    alt="Mahesh Shinde" 
+    className="developer-avatar-img"
+  />
+</div>
+
           <div className="developer-info">
             <h3>Mahesh Shinde</h3>
             <p className="developer-title">B. Tech Computer Engineering Student</p>

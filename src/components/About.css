@@ -481,3 +481,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Add this at the end of your About.css */
+.developer-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
