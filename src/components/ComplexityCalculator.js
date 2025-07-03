@@ -15,8 +15,6 @@ const ComplexityCalculator = () => {
   const [activeTab, setActiveTab] = useState('analysis');
   const [language, setLanguage] = useState('javascript');
   const [history, setHistory] = useState([]);
-  
-const [showAbout, setShowAbout] = useState(false);
 
   const calculateComplexity = async () => {
     if (!code.trim()) return;
@@ -124,22 +122,6 @@ const [showAbout, setShowAbout] = useState(false);
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <div style={styles.header}>
-
-  <button 
-    onClick={() => setShowAbout(true)}
-    style={styles.aboutButton}
-  >
-    <span style={styles.aboutIcon}>👨‍💻</span> About Dev
-  </button>
-  <h1 style={styles.title}>
-    <span style={styles.gradientText}>CodeComplexity.AI</span>
-    <span style={styles.pulseDot}></span>
-  </h1>
-  <p style={styles.subtitle}>Advanced BigO & Complexity Analysis</p>
-</div>
-
-
         <h1 style={styles.title}>
           <span style={styles.gradientText}>CodeComplexity.AI</span>
           <span style={styles.pulseDot}></span>
@@ -401,9 +383,6 @@ const [showAbout, setShowAbout] = useState(false);
           </div>
         </div>
       </div>
-      <footer style={styles.footer}>
-  <p>Developed with ❤️ by Mahesh Shinde</p>
-</footer>
     </div>
   );
 };
@@ -819,4 +798,4 @@ styleTag.textContent = `
 `;
 document.head.appendChild(styleTag);
 
-export default ComplexityCalculator;
+export default ComplexityCalculator
