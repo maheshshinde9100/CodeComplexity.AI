@@ -2,74 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './About.css';
 
 const About = () => {
-  const [activeFeature, setActiveFeature] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
-    const interval = setInterval(() => {
-      setActiveFeature(prev => (prev + 1) % 6);
-    }, 3000);
-    return () => clearInterval(interval);
   }, []);
 
-  const features = [
-    {
-      id: 1,
-      title: "BigO Analysis",
-      description: "Advanced algorithmic complexity analysis with real-time Big O notation calculation",
-      icon: "🚀",
-      color: "#00f5ff"
-    },
-    {
-      id: 2,
-      title: "Code Optimization",
-      description: "Intelligent suggestions to improve your code performance and efficiency",
-      icon: "⚡",
-      color: "#00ff88"
-    },
-    {
-      id: 3,
-      title: "Smart Suggestions",
-      description: "AI-powered recommendations for better coding practices and patterns",
-      icon: "🧠",
-      color: "#ff6b6b"
-    },
-    {
-      id: 4,
-      title: "Detailed Analysis",
-      description: "Comprehensive code breakdown with complexity metrics and insights",
-      icon: "📊",
-      color: "#ffff00"
-    },
-    {
-      id: 5,
-      title: "Performance Metrics",
-      description: "Real-time performance tracking and complexity scoring system",
-      icon: "📈",
-      color: "#ff00ff"
-    },
-    {
-      id: 6,
-      title: "History Tracking",
-      description: "Complete analysis history with comparison and trend visualization",
-      icon: "📝",
-      color: "#00ffff"
-    }
+  const skills = [
+    { name: "Java", level: 90, color: "#6366f1" },
+    { name: "Spring Boot", level: 85, color: "#8b5cf6" },
+    { name: "React.js", level: 88, color: "#a855f7" },
+    { name: "Node.js", level: 82, color: "#3b82f6" },
+    { name: "MongoDB", level: 80, color: "#6366f1" },
+    { name: "MySQL", level: 85, color: "#8b5cf6" },
+    { name: "Docker", level: 75, color: "#a855f7" },
+    { name: "Kafka", level: 70, color: "#3b82f6" }
   ];
 
-  const stats = [
-    { label: "Code Analyses", value: "10,000+", color: "#00f5ff" },
-    { label: "Algorithms Optimized", value: "5,000+", color: "#00ff88" },
-    { label: "Performance Boost", value: "85%", color: "#ff6b6b" },
-    { label: "Happy Developers", value: "2,500+", color: "#ffff00" }
-  ];
-
-  const techStack = [
-    { name: "React", level: 95, color: "#00f5ff" },
-    { name: "Node.js", level: 90, color: "#00ff88" },
-    { name: "AI/ML", level: 85, color: "#ff6b6b" },
-    { name: "Algorithm Analysis", level: 98, color: "#ffff00" }
+  const tools = [
+    "Hibernate", "Tailwind CSS", "JavaScript", "SonarQube", 
+    "Git", "Redis", "Postman"
   ];
 
   return (
@@ -86,94 +38,22 @@ const About = () => {
         </div>
       </div>
 
-      {/* Mission Section */}
+      {/* Brief About Application */}
       <div className="about-section mission-section">
         <div className="section-header">
-          <h2 className="section-title">Our Mission</h2>
+          <h2 className="section-title">About the Application</h2>
           <div className="section-divider"></div>
         </div>
         <div className="mission-content">
           <p>
-            CodeComplexity.AI revolutionizes how developers understand and optimize their code. 
-            Our cutting-edge platform combines advanced algorithms with artificial intelligence 
-            to provide instant, accurate complexity analysis and optimization suggestions.
-          </p>
-          <p>
-            We believe that every developer deserves access to professional-grade code analysis 
-            tools that help them write better, faster, and more efficient code.
+            CodeComplexity.AI is an intelligent code analysis platform that helps developers 
+            understand and optimize their algorithms. Simply paste your code, and get instant 
+            Big O notation analysis, performance insights, and optimization suggestions powered by AI.
           </p>
         </div>
       </div>
 
-      {/* Features Grid */}
-      <div className="about-section features-section">
-        <div className="section-header">
-          <h2 className="section-title">Key Features</h2>
-          <div className="section-divider"></div>
-        </div>
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <div 
-              key={feature.id}
-              className={`feature-card ${activeFeature === index ? 'active' : ''}`}
-              style={{ '--feature-color': feature.color }}
-            >
-              <div className="feature-icon">{feature.icon}</div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-              <div className="feature-glow"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="about-section stats-section">
-        <div className="section-header">
-          <h2 className="section-title">Platform Statistics</h2>
-          <div className="section-divider"></div>
-        </div>
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card" style={{ '--stat-color': stat.color }}>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-              <div className="stat-bar">
-                <div className="stat-fill"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Technology Stack */}
-      <div className="about-section tech-section">
-        <div className="section-header">
-          <h2 className="section-title">Technology Stack</h2>
-          <div className="section-divider"></div>
-        </div>
-        <div className="tech-grid">
-          {techStack.map((tech, index) => (
-            <div key={index} className="tech-item">
-              <div className="tech-header">
-                <span className="tech-name">{tech.name}</span>
-                <span className="tech-percentage">{tech.level}%</span>
-              </div>
-              <div className="tech-bar">
-                <div 
-                  className="tech-progress"
-                  style={{ 
-                    width: `${tech.level}%`,
-                    backgroundColor: tech.color
-                  }}
-                ></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* How It Works */}
+      {/* How It Works - Simplified */}
       <div className="about-section workflow-section">
         <div className="section-header">
           <h2 className="section-title">How It Works</h2>
@@ -182,25 +62,25 @@ const About = () => {
         <div className="workflow-steps">
           <div className="workflow-step">
             <div className="step-number">1</div>
-            <h3>Input Your Code</h3>
-            <p>Paste your code into our advanced editor with syntax highlighting</p>
+            <h3>Input Code</h3>
+            <p>Paste your algorithm or code snippet</p>
           </div>
           <div className="workflow-arrow">→</div>
           <div className="workflow-step">
             <div className="step-number">2</div>
             <h3>AI Analysis</h3>
-            <p>Our AI engine analyzes complexity, patterns, and performance metrics</p>
+            <p>Advanced analysis of complexity and performance</p>
           </div>
           <div className="workflow-arrow">→</div>
           <div className="workflow-step">
             <div className="step-number">3</div>
             <h3>Get Results</h3>
-            <p>Receive detailed analysis, optimization suggestions, and BigO notation</p>
+            <p>Receive Big O notation and optimization tips</p>
           </div>
         </div>
       </div>
 
-      {/* Developer Info */}
+      {/* Developer Info - Main Focus */}
       <div className="about-section developer-section">
         <div className="section-header">
           <h2 className="section-title">About the Developer</h2>
@@ -209,30 +89,56 @@ const About = () => {
         <div className="developer-card">
           <div className="developer-avatar">
             <div className="avatar-glow"></div>
-            <span className="avatar-text">DEV</span>
+            <span className="avatar-text">MS</span>
           </div>
           <div className="developer-info">
-            <h3>Built with Passion</h3>
-            <p>
-              CodeComplexity.AI was created by passionate developers who understand 
-              the challenges of writing efficient code. Our goal is to democratize 
-              access to advanced code analysis tools and help developers worldwide 
-              improve their coding skills.
+            <h3>Mahesh Shinde</h3>
+            <p className="developer-title">BTech Computer Engineering Student</p>
+            <p className="developer-college">3rd Year • Sanjivani College of Engineering, Kopargaon</p>
+            <p className="developer-description">
+              Passionate full-stack developer with expertise in modern web technologies and 
+              backend systems. Currently pursuing Computer Engineering with a focus on 
+              building scalable applications and exploring AI/ML integration.
             </p>
-            <div className="developer-stats">
-              <div className="dev-stat">
-                <span className="dev-stat-value">5+</span>
-                <span className="dev-stat-label">Years Experience</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Skills Section */}
+      <div className="about-section tech-section">
+        <div className="section-header">
+          <h2 className="section-title">Technical Skills</h2>
+          <div className="section-divider"></div>
+        </div>
+        <div className="tech-grid">
+          {skills.map((skill, index) => (
+            <div key={index} className="tech-item">
+              <div className="tech-header">
+                <span className="tech-name">{skill.name}</span>
+                <span className="tech-percentage">{skill.level}%</span>
               </div>
-              <div className="dev-stat">
-                <span className="dev-stat-value">100+</span>
-                <span className="dev-stat-label">Projects</span>
-              </div>
-              <div className="dev-stat">
-                <span className="dev-stat-value">∞</span>
-                <span className="dev-stat-label">Passion</span>
+              <div className="tech-bar">
+                <div 
+                  className="tech-progress"
+                  style={{ 
+                    width: `${skill.level}%`,
+                    backgroundColor: skill.color
+                  }}
+                ></div>
               </div>
             </div>
+          ))}
+        </div>
+        
+        {/* Additional Tools */}
+        <div className="tools-section">
+          <h3 className="tools-title">Additional Tools & Technologies</h3>
+          <div className="tools-grid">
+            {tools.map((tool, index) => (
+              <div key={index} className="tool-tag">
+                {tool}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -245,18 +151,18 @@ const About = () => {
         </div>
         <div className="contact-content">
           <p>
-            Have questions, suggestions, or want to collaborate? We'd love to hear from you!
+            Let's connect! Feel free to reach out for collaborations, opportunities, or just to say hello.
           </p>
           <div className="contact-links">
-            <a href="#" className="contact-link">
+            <a href="mailto:contact.shindemahesh2112@gmail.com" className="contact-link">
               <span className="contact-icon">📧</span>
-              <span>Email Us</span>
+              <span>Email Me</span>
             </a>
-            <a href="#" className="contact-link">
+            <a href="https://github.com/coder-mahi" className="contact-link" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">🐙</span>
               <span>GitHub</span>
             </a>
-            <a href="#" className="contact-link">
+            <a href="https://www.linkedin.com/in/mahesh-shinde-0a666b23b" className="contact-link" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">💼</span>
               <span>LinkedIn</span>
             </a>
