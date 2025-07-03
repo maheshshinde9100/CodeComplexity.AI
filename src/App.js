@@ -52,7 +52,7 @@ function Footer() {
           </a>
         </div>
         <div className="footer-year">
-          © 2024 CodeComplexity.AI
+          © 2025 CodeComplexity.AI
         </div>
       </div>
     </footer>

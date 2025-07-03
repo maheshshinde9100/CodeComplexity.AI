@@ -93,7 +93,7 @@ const About = () => {
           </div>
           <div className="developer-info">
             <h3>Mahesh Shinde</h3>
-            <p className="developer-title">BTech Computer Engineering Student</p>
+            <p className="developer-title">B. Tech Computer Engineering Student</p>
             <p className="developer-college">3rd Year • Sanjivani College of Engineering, Kopargaon</p>
             <p className="developer-description">
               Passionate full-stack developer with expertise in modern web technologies and 
