@@ -9,18 +9,18 @@ const About = () => {
   }, []);
 
   const skills = [
-    { name: "Java", level: 90, color: "#6366f1" },
-    { name: "Spring Boot", level: 85, color: "#8b5cf6" },
-    { name: "React.js", level: 88, color: "#a855f7" },
-    { name: "Node.js", level: 82, color: "#3b82f6" },
+    { name: "Java", level: 91, color: "#6366f1" },
+    { name: "Spring Boot", level: 90, color: "#8b5cf6" },
+    { name: "React.js", level: 80, color: "#a855f7" },
+    { name: "Node.js", level: 70, color: "#3b82f6" },
     { name: "MongoDB", level: 80, color: "#6366f1" },
     { name: "MySQL", level: 85, color: "#8b5cf6" },
-    { name: "Docker", level: 75, color: "#a855f7" },
-    { name: "Kafka", level: 70, color: "#3b82f6" }
+    { name: "Docker", level: 60, color: "#a855f7" },
+    { name: "Kafka", level: 40, color: "#3b82f6" }
   ];
 
   const tools = [
-    "Hibernate", "Tailwind CSS", "JavaScript", "SonarQube", 
+    "Hibernate", "JavaScript", "C++", "Tailwind CSS", "SonarQube", 
     "Git", "Redis", "Postman"
   ];
 
@@ -91,7 +91,7 @@ const About = () => {
           <div className="developer-avatar">
   <div className="avatar-glow"></div>
   <img 
-    src="/my-img.png" 
+    src="/my-img2.jpg" 
     alt="Mahesh Shinde" 
     className="developer-avatar-img"
   />
