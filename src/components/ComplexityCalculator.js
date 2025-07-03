@@ -21,7 +21,7 @@ const ComplexityCalculator = () => {
     
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/calculate', {
+      const response = await fetch('/api/calculate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const ComplexityCalculator = () => {
     
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/bigO-analysis', {
+      const response = await fetch('/api/bigO-analysis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const ComplexityCalculator = () => {
     
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/optimize', {
+      const response = await fetch('/api/optimize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -264,6 +264,8 @@ async function getOptimizationSuggestions(code, language) {
   }
 }
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Add this at the end (replace app.listen):
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+module.exports = app; // Required for Vercel serverless
