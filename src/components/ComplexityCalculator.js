@@ -1,3 +1,5 @@
+// /src/componenents/ComplexityCalculator.js
+
 import React, { useState, useEffect } from 'react';
 
 const ComplexityCalculator = () => {
@@ -393,20 +395,24 @@ const styles = {
     background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
     color: '#ffffff',
     fontFamily: "'Fira Code', 'Courier New', monospace",
-    padding: '20px',
+    padding: 'clamp(15px, 5vw, 40px)',
+    boxSizing: 'border-box',
   },
   header: {
     textAlign: 'center',
-    marginBottom: '40px',
+    marginBottom: 'clamp(20px, 5vw, 40px)',
+    padding: 'clamp(15px, 3vw, 20px) 0',
   },
   title: {
-    fontSize: '3rem',
+    fontSize: 'clamp(1.8rem, 5vw, 3rem)',
     fontWeight: '800',
     marginBottom: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '15px',
+    gap: 'clamp(8px, 2vw, 15px)',
+    lineHeight: '1.2',
+    flexWrap: 'wrap',
   },
   gradientText: {
     background: 'linear-gradient(45deg, #00f5ff, #ff00ff, #00ff00)',
@@ -416,92 +422,130 @@ const styles = {
     animation: 'gradientShift 3s ease infinite',
   },
   pulseDot: {
-    width: '12px',
-    height: '12px',
+    width: 'clamp(10px, 2vw, 12px)',
+    height: 'clamp(10px, 2vw, 12px)',
     background: '#00ff00',
     borderRadius: '50%',
     animation: 'pulse 2s infinite',
     boxShadow: '0 0 20px #00ff00',
+    flexShrink: 0,
   },
   subtitle: {
-    fontSize: '1.2rem',
+    fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)',
     color: '#888',
     fontWeight: '300',
+    maxWidth: '600px',
+    margin: '0 auto',
   },
   main: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '30px',
+    gridTemplateColumns: '1fr',
+    gap: 'clamp(20px, 4vw, 30px)',
     maxWidth: '1600px',
     margin: '0 auto',
+    width: '100%',
   },
   codeInputSection: {
     background: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: '20px',
-    padding: '25px',
+    borderRadius: 'clamp(15px, 3vw, 20px)',
+    padding: 'clamp(20px, 4vw, 25px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     backdropFilter: 'blur(10px)',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+    width: '100%',
+    boxSizing: 'border-box',
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '20px',
+    marginBottom: 'clamp(15px, 3vw, 20px)',
     gap: '15px',
+    flexWrap: 'wrap',
   },
   languageSelector: {
     background: 'rgba(255, 255, 255, 0.1)',
     border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '10px',
-    padding: '10px 15px',
+    padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     cursor: 'pointer',
+    minHeight: '44px',
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: '120px',
   },
   buttonGroup: {
     display: 'flex',
-    gap: '10px',
+    gap: 'clamp(8px, 2vw, 10px)',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   analyzeBtn: {
     background: 'linear-gradient(45deg, #00f5ff, #0066ff)',
     border: 'none',
     borderRadius: '12px',
-    padding: '12px 24px',
+    padding: 'clamp(10px, 2vw, 12px) clamp(18px, 4vw, 24px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontWeight: '600',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     boxShadow: '0 10px 20px rgba(0, 245, 255, 0.3)',
+    minHeight: '44px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    minWidth: '100px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
   },
   bigOBtn: {
     background: 'linear-gradient(45deg, #ff6b6b, #ff8e8e)',
     border: 'none',
     borderRadius: '12px',
-    padding: '12px 20px',
+    padding: 'clamp(10px, 2vw, 12px) clamp(18px, 4vw, 20px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontWeight: '600',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     boxShadow: '0 10px 20px rgba(255, 107, 107, 0.3)',
+    minHeight: '44px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    minWidth: '100px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
   },
   optimizeBtn: {
     background: 'linear-gradient(45deg, #00ff88, #00cc6a)',
     border: 'none',
     borderRadius: '12px',
-    padding: '12px 20px',
+    padding: 'clamp(10px, 2vw, 12px) clamp(18px, 4vw, 20px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontWeight: '600',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     boxShadow: '0 10px 20px rgba(0, 255, 136, 0.3)',
+    minHeight: '44px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    minWidth: '100px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
   },
   loading: {
     opacity: '0.6',
     cursor: 'not-allowed',
+    pointerEvents: 'none',
   },
   spinner: {
     width: '16px',
@@ -511,54 +555,66 @@ const styles = {
     borderRadius: '50%',
     animation: 'spin 1s linear infinite',
     marginRight: '8px',
+    flexShrink: 0,
   },
   codeEditor: {
     width: '100%',
-    height: '400px',
+    height: 'clamp(250px, 50vh, 400px)',
     background: 'rgba(0, 0, 0, 0.4)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     borderRadius: '15px',
-    padding: '20px',
+    padding: 'clamp(15px, 3vw, 20px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontFamily: "'Fira Code', monospace",
     lineHeight: '1.6',
     resize: 'vertical',
     outline: 'none',
+    boxSizing: 'border-box',
   },
   resultsPanel: {
     background: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: '20px',
-    padding: '25px',
+    borderRadius: 'clamp(15px, 3vw, 20px)',
+    padding: 'clamp(20px, 4vw, 25px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     backdropFilter: 'blur(10px)',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+    width: '100%',
+    boxSizing: 'border-box',
   },
   metricsGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '15px',
-    marginBottom: '30px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+    gap: 'clamp(10px, 3vw, 15px)',
+    marginBottom: 'clamp(20px, 4vw, 30px)',
   },
   metricCard: {
     background: 'rgba(255, 255, 255, 0.1)',
     borderRadius: '15px',
-    padding: '20px',
+    padding: 'clamp(15px, 3vw, 20px)',
     textAlign: 'center',
     border: '1px solid rgba(255, 255, 255, 0.2)',
     transition: 'all 0.3s ease',
     position: 'relative',
     overflow: 'hidden',
+    minHeight: '100px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   metricValue: {
-    fontSize: '2rem',
+    fontSize: 'clamp(1.5rem, 5vw, 2rem)',
     fontWeight: '800',
     marginBottom: '5px',
+    lineHeight: '1.2',
   },
   metricLabel: {
-    fontSize: '0.85rem',
+    fontSize: 'clamp(0.7rem, 2vw, 0.85rem)',
     opacity: '0.8',
     fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: '1.3',
   },
   low: {
     background: 'linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.1))',
@@ -577,20 +633,27 @@ const styles = {
   },
   resultsTabs: {
     display: 'flex',
-    gap: '10px',
-    marginBottom: '25px',
+    gap: 'clamp(8px, 2vw, 10px)',
+    marginBottom: 'clamp(20px, 4vw, 25px)',
     flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   tab: {
     background: 'rgba(255, 255, 255, 0.1)',
     border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '10px',
-    padding: '10px 20px',
+    padding: 'clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px)',
     color: '#ffffff',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontWeight: '500',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
+    minHeight: '44px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '80px',
+    textAlign: 'center',
   },
   activeTab: {
     background: 'linear-gradient(45deg, #00f5ff, #0066ff)',
@@ -598,50 +661,55 @@ const styles = {
     boxShadow: '0 5px 15px rgba(0, 245, 255, 0.3)',
   },
   tabContent: {
-    minHeight: '300px',
+    minHeight: 'clamp(250px, 40vh, 300px)',
     background: 'rgba(0, 0, 0, 0.2)',
     borderRadius: '15px',
-    padding: '25px',
+    padding: 'clamp(20px, 4vw, 25px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
+    boxSizing: 'border-box',
   },
   sectionTitle: {
-    fontSize: '1.5rem',
+    fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
     fontWeight: '700',
-    marginBottom: '20px',
+    marginBottom: 'clamp(15px, 3vw, 20px)',
     color: '#00f5ff',
     textShadow: '0 0 10px rgba(0, 245, 255, 0.5)',
+    lineHeight: '1.3',
   },
   analysisContent: {
     lineHeight: '1.8',
   },
   analysisText: {
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     color: '#e0e0e0',
     lineHeight: '1.7',
+    marginBottom: '15px',
   },
   bigOContent: {
     lineHeight: '1.6',
   },
   bigOGrid: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '20px',
-    marginBottom: '20px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: 'clamp(15px, 3vw, 20px)',
+    marginBottom: 'clamp(15px, 3vw, 20px)',
   },
   bigOSection: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '10px',
-    padding: '15px',
+    padding: 'clamp(12px, 3vw, 15px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
+    boxSizing: 'border-box',
   },
   scenariosSection: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '10px',
-    padding: '15px',
+    padding: 'clamp(12px, 3vw, 15px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
+    boxSizing: 'border-box',
   },
   explanation: {
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     color: '#e0e0e0',
     lineHeight: '1.7',
     marginBottom: '15px',
@@ -649,8 +717,9 @@ const styles = {
   bottlenecks: {
     background: 'rgba(255, 107, 107, 0.1)',
     borderRadius: '10px',
-    padding: '15px',
+    padding: 'clamp(12px, 3vw, 15px)',
     border: '1px solid rgba(255, 107, 107, 0.3)',
+    boxSizing: 'border-box',
   },
   suggestionsContent: {
     lineHeight: '1.6',
@@ -658,62 +727,80 @@ const styles = {
   optimizationSections: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '20px',
+    gap: 'clamp(15px, 3vw, 20px)',
   },
   optimizationSection: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '10px',
-    padding: '20px',
+    padding: 'clamp(15px, 3vw, 20px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
+    boxSizing: 'border-box',
   },
   suggestionItem: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '8px',
-    padding: '15px',
+    padding: 'clamp(12px, 3vw, 15px)',
     margin: '10px 0',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     display: 'flex',
-    alignItems: 'center',
-    gap: '15px',
+    alignItems: 'flex-start',
+    gap: 'clamp(10px, 2vw, 15px)',
+    boxSizing: 'border-box',
   },
   suggestionBadge: {
     background: 'linear-gradient(45deg, #00f5ff, #0066ff)',
     borderRadius: '50%',
-    width: '30px',
-    height: '30px',
+    width: 'clamp(28px, 5vw, 30px)',
+    height: 'clamp(28px, 5vw, 30px)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     fontWeight: '600',
     flexShrink: 0,
+    color: '#ffffff',
+  },
+  suggestionText: {
+    flex: 1,
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+    color: '#e0e0e0',
+    lineHeight: '1.6',
   },
   metricsContent: {
     lineHeight: '1.6',
   },
   metricsDetailGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '20px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: 'clamp(15px, 3vw, 20px)',
   },
   metricDetailCard: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '15px',
-    padding: '25px',
+    padding: 'clamp(20px, 4vw, 25px)',
     textAlign: 'center',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     transition: 'all 0.3s ease',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '120px',
   },
   metricDetailValue: {
-    fontSize: '2.5rem',
+    fontSize: 'clamp(1.8rem, 6vw, 2.5rem)',
     fontWeight: '800',
     marginBottom: '10px',
     color: '#00f5ff',
+    lineHeight: '1.2',
   },
   metricDetailLabel: {
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     opacity: '0.8',
     fontWeight: '500',
+    lineHeight: '1.3',
+    textAlign: 'center',
   },
   historyContent: {
     lineHeight: '1.6',
@@ -721,51 +808,62 @@ const styles = {
   historyItems: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '15px',
+    gap: 'clamp(12px, 3vw, 15px)',
+    maxHeight: '400px',
+    overflowY: 'auto',
+    paddingRight: '10px',
   },
   historyItem: {
     background: 'rgba(255, 255, 255, 0.05)',
     borderRadius: '10px',
-    padding: '20px',
+    padding: 'clamp(15px, 3vw, 20px)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
     display: 'grid',
-    gridTemplateColumns: 'auto auto auto 1fr',
-    gap: '20px',
+    gridTemplateColumns: '1fr',
+    gap: 'clamp(10px, 2vw, 15px)',
     alignItems: 'center',
+    boxSizing: 'border-box',
+    transition: 'all 0.3s ease',
   },
   historyTime: {
-    fontSize: '0.9rem',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     color: '#888',
     fontWeight: '500',
+    textAlign: 'center',
   },
   historyScore: {
-    fontSize: '1.2rem',
+    fontSize: 'clamp(1rem, 3vw, 1.2rem)',
     fontWeight: '700',
     padding: '5px 12px',
     borderRadius: '8px',
     textAlign: 'center',
     minWidth: '50px',
+    alignSelf: 'center',
   },
   historyBigO: {
-    fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
     fontWeight: '600',
     color: '#00f5ff',
     background: 'rgba(0, 245, 255, 0.1)',
     padding: '5px 12px',
     borderRadius: '8px',
     border: '1px solid rgba(0, 245, 255, 0.3)',
+    textAlign: 'center',
+    alignSelf: 'center',
   },
   historySnippet: {
-    fontSize: '0.9rem',
+    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
     color: '#ccc',
     fontFamily: "'Fira Code', monospace",
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    textAlign: 'center',
+    padding: '5px 0',
   },
 };
 
-// Add CSS animations via style tag
+// Add CSS animations via style tag with enhanced responsive design
 const styleTag = document.createElement('style');
 styleTag.textContent = `
   @keyframes gradientShift {
@@ -785,17 +883,239 @@ styleTag.textContent = `
     100% { transform: rotate(360deg); }
   }
   
-  @media (max-width: 1200px) {
-    .main { grid-template-columns: 1fr !important; }
+  /* Enhanced responsive breakpoints */
+  @media (min-width: 768px) {
+    .main { 
+      grid-template-columns: 1fr !important; 
+    }
+    
+    .toolbar {
+      flex-wrap: nowrap !important;
+      justify-content: space-between !important;
+    }
+    
+    .buttonGroup {
+      flex-wrap: nowrap !important;
+    }
+    
+    .resultsTabs {
+      justify-content: flex-start !important;
+    }
+    
+    .historyItem {
+      grid-template-columns: auto auto auto 1fr !important;
+      text-align: left !important;
+    }
+    
+    .historyTime,
+    .historyScore,
+    .historyBigO,
+    .historySnippet {
+      text-align: left !important;
+    }
   }
   
-  @media (max-width: 768px) {
-    .metricsGrid { grid-template-columns: repeat(2, 1fr) !important; }
-    .bigOGrid { grid-template-columns: 1fr !important; }
-    .metricsDetailGrid { grid-template-columns: 1fr !important; }
-    .historyItem { grid-template-columns: 1fr !important; text-align: center; }
+  @media (min-width: 1024px) {
+    .main { 
+      grid-template-columns: 1fr 1fr !important; 
+    }
+    
+    .metricsGrid { 
+      grid-template-columns: repeat(4, 1fr) !important; 
+    }
+    
+    .bigOGrid { 
+      grid-template-columns: 1fr 1fr !important; 
+    }
+    
+    .metricsDetailGrid { 
+      grid-template-columns: repeat(2, 1fr) !important; 
+    }
+  }
+  
+  /* Mobile-first responsive design */
+  @media (max-width: 767px) {
+    .toolbar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    
+    .buttonGroup {
+      justify-content: stretch !important;
+    }
+    
+    .buttonGroup > button {
+      flex: 1 !important;
+    }
+    
+    .languageSelector {
+      width: 100% !important;
+      justify-content: center !important;
+    }
+    
+    .metricsGrid { 
+      grid-template-columns: repeat(2, 1fr) !important; 
+    }
+    
+    .bigOGrid { 
+      grid-template-columns: 1fr !important; 
+    }
+    
+    .metricsDetailGrid { 
+      grid-template-columns: 1fr !important; 
+    }
+    
+    .historyItem { 
+      grid-template-columns: 1fr !important; 
+      text-align: center !important; 
+      gap: 8px !important;
+    }
+    
+    .resultsTabs {
+      justify-content: center !important;
+    }
+    
+    .tab {
+      flex: 1 !important;
+      min-width: 80px !important;
+    }
+    
+    .suggestionItem {
+      flex-direction: column !important;
+      text-align: center !important;
+      align-items: center !important;
+    }
+    
+    .suggestionBadge {
+      margin-bottom: 8px !important;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 480px) {
+    .metricsGrid { 
+      grid-template-columns: 1fr !important; 
+    }
+    
+    .resultsTabs {
+      flex-direction: column !important;
+    }
+    
+    .tab {
+      width: 100% !important;
+    }
+    
+    .title {
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+  }
+  
+  /* Very small devices */
+  @media (max-width: 360px) {
+    .buttonGroup {
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+    
+    .toolbar {
+      gap: 10px !important;
+    }
+  }
+  
+  /* Landscape orientation for mobile */
+  @media (max-height: 600px) and (orientation: landscape) {
+    .title {
+      font-size: 1.8rem !important;
+    }
+    
+    .codeEditor {
+      height: 200px !important;
+    }
+    
+    .tabContent {
+      min-height: 200px !important;
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .tab,
+    .analyzeBtn,
+    .bigOBtn,
+    .optimizeBtn,
+    .languageSelector {
+      min-height: 48px !important;
+    }
+  }
+  
+  /* High DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .pulseDot {
+      box-shadow: 0 0 15px #00ff00 !important;
+    }
+  }
+  
+  /* Accessibility - Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .container {
+      background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%) !important;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .container {
+      background: white !important;
+      color: black !important;
+    }
+    
+    .analyzeBtn,
+    .bigOBtn,
+    .optimizeBtn {
+      display: none !important;
+    }
+    
+    .codeEditor {
+      border: 1px solid #ccc !important;
+      background: white !important;
+      color: black !important;
+    }
+  }
+  
+  /* Scrollbar styling for webkit browsers */
+  .historyItems::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .historyItems::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  
+  .historyItems::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00f5ff, #0066ff);
+    border-radius: 4px;
+  }
+  
+  .historyItems::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #0066ff, #00f5ff);
   }
 `;
-document.head.appendChild(styleTag);
 
-export default ComplexityCalculator
+// Only append if not already present
+if (!document.getElementById('complexity-calculator-styles')) {
+  styleTag.id = 'complexity-calculator-styles';
+  document.head.appendChild(styleTag);
+}
+
+export default ComplexityCalculator;

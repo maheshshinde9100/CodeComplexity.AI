@@ -1,4 +1,4 @@
-/* Enhanced Futuristic CSS for Code Complexity Calculator */
+/* Enhanced Futuristic CSS for Code Complexity Calculator - Responsive Version */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700;800&display=swap');
 
@@ -93,13 +93,17 @@ body {
 /* Main container enhancements */
 .computron-container {
   animation: slideIn 0.8s ease-out;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* Header enhancements */
 .computron-header {
   position: relative;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  padding: 20px 0;
 }
 
 .computron-header::before {
@@ -114,6 +118,18 @@ body {
   border-radius: 50%;
   animation: pulse 3s ease-in-out infinite;
   pointer-events: none;
+}
+
+.computron-header h1 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.computron-header p {
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  opacity: 0.8;
+  margin-bottom: 0;
 }
 
 .gradient-text {
@@ -137,8 +153,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   background: radial-gradient(circle, #00ff00, #00aa00);
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -153,6 +169,18 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  min-height: 44px; /* Better touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .analyze-btn::before,
@@ -174,19 +202,39 @@ body {
   left: 100%;
 }
 
+.analyze-btn {
+  background: linear-gradient(45deg, #00f5ff, #0066ff);
+}
+
+.bigO-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ff4757);
+}
+
+.optimize-btn {
+  background: linear-gradient(45deg, #00ff88, #00cc6a);
+}
+
 .analyze-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0, 245, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 245, 255, 0.4);
 }
 
 .bigO-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
 }
 
 .optimize-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
+}
+
+/* Toolbar responsive */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 /* Enhanced code editor */
@@ -195,6 +243,15 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   position: relative;
+  width: 100%;
+  min-height: 300px;
+  padding: 20px;
+  border-radius: 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  line-height: 1.6;
+  resize: vertical;
+  color: #ffffff;
 }
 
 .code-editor:focus {
@@ -209,10 +266,32 @@ body {
 }
 
 /* Enhanced metric cards */
+.computron-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.code-input-section,
+.results-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
 .complexity-meter {
   position: relative;
   overflow: hidden;
   animation: slideIn 0.6s ease-out;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .complexity-meter::before {
@@ -251,15 +330,16 @@ body {
 }
 
 .score {
-  font-size: 4rem;
+  font-size: clamp(2rem, 8vw, 4rem);
   font-weight: 900;
   text-shadow: 0 0 20px currentColor;
   animation: float 3s ease-in-out infinite;
+  margin-bottom: 10px;
 }
 
 .score-label {
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  letter-spacing: 1px;
   opacity: 0.8;
   text-transform: uppercase;
 }
@@ -272,6 +352,7 @@ body {
   overflow: hidden;
   margin-top: 20px;
   position: relative;
+  width: 100%;
 }
 
 .gauge-fill {
@@ -280,6 +361,7 @@ body {
   border-radius: 4px;
   transition: width 1s ease;
   position: relative;
+  min-width: 2px;
 }
 
 .gauge-fill::after {
@@ -300,20 +382,40 @@ body {
   padding: 8px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .results-tabs button {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  flex: 1;
+  min-width: 100px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .results-tabs button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .results-tabs button.active {
+  background: linear-gradient(45deg, #00f5ff, #0066ff);
+  border-color: #00f5ff;
   animation: glow 1s ease-in-out infinite;
 }
 
@@ -322,6 +424,8 @@ body {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
   animation: slideIn 0.5s ease-out;
 }
 
@@ -329,6 +433,7 @@ body {
 .suggestions-content,
 .history-content {
   line-height: 1.8;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .analysis-content h3,
@@ -336,6 +441,7 @@ body {
 .history-content h3 {
   position: relative;
   margin-bottom: 25px;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
 }
 
 .analysis-content h3::after,
@@ -354,6 +460,7 @@ body {
 /* Enhanced suggestion items */
 .suggestions-content ul {
   list-style: none;
+  padding: 0;
 }
 
 .suggestions-content li {
@@ -365,6 +472,9 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
 }
 
 .suggestions-content li:hover {
@@ -380,13 +490,19 @@ body {
   border-radius: 50%;
   width: 35px;
   height: 35px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  margin-right: 15px;
+  font-size: 0.9rem;
   box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
   animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.suggestion-text {
+  flex: 1;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 /* Enhanced history items */
@@ -413,71 +529,17 @@ body {
 .history-item {
   transition: all 0.3s ease;
   animation: slideIn 0.5s ease-out;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
 .history-item:hover {
   transform: translateX(5px);
   background: rgba(255, 255, 255, 0.08);
   border-color: #00f5ff;
-}
-
-/* Responsive design */
-@media (max-width: 1200px) {
-  .computron-main {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .score {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .computron-header h1 {
-    font-size: 2.5rem;
-  }
-  
-  .toolbar {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .code-editor {
-    height: 300px;
-  }
-  
-  .results-tabs {
-    flex-wrap: wrap;
-  }
-  
-  .results-tabs button {
-    flex: 1;
-    min-width: 120px;
-  }
-  
-  .score {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .computron-container {
-    padding: 15px;
-  }
-  
-  .computron-header h1 {
-    font-size: 2rem;
-  }
-  
-  .code-input-section,
-  .results-panel {
-    padding: 20px;
-  }
-  
-  .tab-content {
-    padding: 20px;
-  }
 }
 
 /* Loading states */
@@ -507,4 +569,210 @@ body {
   animation: spin 1s linear infinite;
   display: inline-block;
   margin-right: 10px;
+}
+
+/* Responsive design - Enhanced */
+@media (min-width: 768px) {
+  .computron-container {
+    padding: 30px;
+  }
+  
+  .toolbar {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .analyze-btn, .bigO-btn, .optimize-btn {
+    width: auto;
+    min-width: 150px;
+    margin-bottom: 0;
+  }
+  
+  .code-editor {
+    min-height: 400px;
+  }
+  
+  .pulse-dot::after {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .computron-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .computron-container {
+    padding: 40px;
+    max-width: 1400px;
+  }
+  
+  .code-editor {
+    min-height: 500px;
+  }
+  
+  .results-tabs {
+    justify-content: flex-start;
+  }
+  
+  .results-tabs button {
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .computron-main {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+  }
+  
+  .computron-container {
+    padding: 50px;
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+  .computron-container {
+    padding: 15px;
+  }
+  
+  .computron-header {
+    margin-bottom: 20px;
+    padding: 15px 0;
+  }
+  
+  .code-input-section,
+  .results-panel {
+    padding: 20px;
+  }
+  
+  .tab-content {
+    padding: 20px;
+  }
+  
+  .code-editor {
+    min-height: 250px;
+    padding: 15px;
+  }
+  
+  .complexity-meter {
+    padding: 20px;
+  }
+  
+  .suggestions-content li {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .suggestion-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .results-tabs {
+    padding: 6px;
+  }
+  
+  .results-tabs button {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .computron-container {
+    padding: 10px;
+  }
+  
+  .code-input-section,
+  .results-panel {
+    padding: 15px;
+  }
+  
+  .tab-content {
+    padding: 15px;
+  }
+  
+  .analyze-btn, .bigO-btn, .optimize-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .computron-header {
+    margin-bottom: 20px;
+  }
+  
+  .computron-header h1 {
+    font-size: 2rem;
+  }
+  
+  .code-editor {
+    min-height: 200px;
+  }
+  
+  .complexity-meter {
+    padding: 15px;
+  }
+  
+  .score {
+    font-size: 2.5rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .computron-header::before {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .pulse-dot::after {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+button:focus,
+.code-editor:focus,
+.results-tabs button:focus {
+  outline: 2px solid #00f5ff;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  
+  .computron-header::before,
+  .complexity-meter::before {
+    display: none;
+  }
+  
+  .analyze-btn, .bigO-btn, .optimize-btn {
+    display: none;
+  }
 }

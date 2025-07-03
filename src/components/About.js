@@ -91,7 +91,7 @@ const About = () => {
           <div className="developer-avatar">
   <div className="avatar-glow"></div>
   <img 
-    src="/my-img2.jpg" 
+    src="/my-img3.jpg" 
     alt="Mahesh Shinde" 
     className="developer-avatar-img"
   />
