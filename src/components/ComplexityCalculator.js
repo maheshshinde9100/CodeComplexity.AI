@@ -1,6 +1,6 @@
 // /src/componenents/ComplexityCalculator.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const ComplexityCalculator = () => {
   const [code, setCode] = useState('');
