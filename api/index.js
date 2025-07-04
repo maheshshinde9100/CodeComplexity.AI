@@ -5,13 +5,11 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app = express();
 
-// Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Enhanced code analysis endpoint
 app.post('/api/calculate', async (req, res) => {
   try {
     const { code, language = 'javascript' } = req.body;
@@ -22,7 +20,6 @@ app.post('/api/calculate', async (req, res) => {
 
     const complexityAnalysis = await analyzeCodeWithGemini(code, language);
     
-    // Ensure all fields are properly formatted
     const suggestions = Array.isArray(complexityAnalysis.suggestions) 
       ? complexityAnalysis.suggestions 
       : [complexityAnalysis.suggestions || 'No suggestions provided'];
@@ -51,7 +48,6 @@ app.post('/api/calculate', async (req, res) => {
   }
 });
 
-// New endpoint for detailed BigO analysis
 app.post('/api/bigO-analysis', async (req, res) => {
   try {
     const { code, language = 'javascript' } = req.body;
@@ -73,7 +69,6 @@ app.post('/api/bigO-analysis', async (req, res) => {
   }
 });
 
-// New endpoint for optimization suggestions
 app.post('/api/optimize', async (req, res) => {
   try {
     const { code, language = 'javascript' } = req.body;
@@ -158,10 +153,8 @@ async function analyzeCodeWithGemini(code, language) {
   }
 }
 
-// Detailed BigO analysis
 async function analyzeBigOWithGemini(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `
@@ -215,10 +208,8 @@ async function analyzeBigOWithGemini(code, language) {
   }
 }
 
-// Get optimization suggestions
 async function getOptimizationSuggestions(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `
@@ -261,6 +252,4 @@ async function getOptimizationSuggestions(code, language) {
     };
   }
 }
-
-// Export for Vercel serverless
 module.exports = app;
