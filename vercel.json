@@ -21,7 +21,6 @@
       "dest": "/" 
     }
   ],
-  "env": {
-    "GEMINI_API_KEY": "@gemini-api-key"
-  }
+  "env": {}
+
 }
