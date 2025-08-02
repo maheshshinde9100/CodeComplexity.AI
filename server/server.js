@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
+alert("currently api key removed by me.. due to high traffic and requests");
 const app = express();
 const PORT = 5000;
 
