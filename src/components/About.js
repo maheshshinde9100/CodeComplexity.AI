@@ -164,11 +164,11 @@ const About = () => {
               <span className="contact-icon">📧</span>
               <span>Email Me</span>
             </a>
-            <a href="https://github.com/coder-mahi" className="contact-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/maheshshinde9100" className="contact-link" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">🐙</span>
               <span>GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/mahesh-shinde-0a666b23b" className="contact-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/maheshshinde9100" className="contact-link" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">💼</span>
               <span>LinkedIn</span>
             </a>
