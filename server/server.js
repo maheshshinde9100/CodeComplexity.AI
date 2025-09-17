@@ -1,20 +1,32 @@
 // server/server.js
-
+const rateLimit = require('express-rate-limit');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
-alert("currently api key removed by me.. due to high traffic and requests");
+console.log("currently api key removed by me.. due to high traffic and requests");
 const app = express();
 const PORT = 5000;
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+const limiter = rateLimit({
+  windowMs: 60 * 1000,  // 1 minute
+  max: 3,               // Limit each IP to 3 requests per windowMs
+  message: { error: "Too many requests from this IP (max: 3 requests per minute), please try again later." }
+});
+
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use("/api/", limiter);
+
+// app.use("/api/calculate", rateLimit({ windowMs: 60 * 1000, max: 5 }));
+// app.use("/api/optimize", rateLimit({ windowMs: 60 * 1000, max: 3 }));
+// app.use("/api/bigO-analysis", rateLimit({ windowMs: 60 * 1000, max: 3 }));
 
 // Enhanced code analysis endpoint
 app.post('/api/calculate', async (req, res) => {
