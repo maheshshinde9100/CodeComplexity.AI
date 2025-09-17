@@ -14,9 +14,9 @@ const PORT = 5000;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const limiter = rateLimit({
-  windowMs: 60 * 1000,  // 1 minute
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
   max: 3,               // Limit each IP to 3 requests per windowMs
-  message: { error: "Too many requests from this IP (max: 3 requests per minute), please try again later." }
+  message: { error: "Too many requests from this IP (max: 3 requests per day), please try again later." }
 });
 
 app.use(cors());
