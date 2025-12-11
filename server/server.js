@@ -1,4 +1,3 @@
-// server/server.js
 const rateLimit = require('express-rate-limit');
 const express = require('express');
 const cors = require('cors');
@@ -6,27 +5,62 @@ const bodyParser = require('body-parser');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
-console.log("currently api key removed by me.. due to high traffic and requests");
 const app = express();
+
+// Fix for rate-limit proxy issue
+app.set('trust proxy', 1);
+
+// CORS configuration
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(bodyParser.json());
+
 const PORT = 5000;
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const limiter = rateLimit({
-  windowMs: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-  max: 3,               // Limit each IP to 3 requests per windowMs
+  windowMs: 24 * 60 * 60 * 1000,
+  max: 3,
   message: { error: "Too many requests from this IP (max: 3 requests per day), please try again later." }
 });
 
-app.use(cors());
-app.use(bodyParser.json());
-
 app.use("/api/", limiter);
 
-// app.use("/api/calculate", rateLimit({ windowMs: 60 * 1000, max: 5 }));
-// app.use("/api/optimize", rateLimit({ windowMs: 60 * 1000, max: 3 }));
-// app.use("/api/bigO-analysis", rateLimit({ windowMs: 60 * 1000, max: 3 }));
+// Test endpoint
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'API is working!',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Helper function to get model
+// Updated getModel function - Use this in your server.js
+function getModel() {
+  try {
+    // PRIMARY CHOICE: Use the stable, free Gemini 2.5 Flash model
+    return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  } catch (error) {
+    console.error("Error with gemini-2.5-flash:", error.message);
+    // FALLBACK: Try the Flash-Lite model if the primary fails
+    try {
+      console.log("Falling back to gemini-2.5-flash-lite...");
+      return genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+    } catch (error2) {
+      // FINAL FALLBACK: Try a preview model
+      console.error("Error with fallback model:", error2.message);
+      console.log("Trying preview model...");
+      return genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
+    }
+  }
+}
 
 // Enhanced code analysis endpoint
 app.post('/api/calculate', async (req, res) => {
@@ -115,8 +149,7 @@ app.post('/api/optimize', async (req, res) => {
 // Enhanced code analysis with BigO notation
 async function analyzeCodeWithGemini(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = getModel();
 
     const prompt = `
     Analyze the following ${language} code comprehensively and provide:
@@ -157,10 +190,10 @@ async function analyzeCodeWithGemini(code, language) {
     
     return JSON.parse(cleanText);
   } catch (e) {
-    console.error('Gemini API error:', e);
+    console.error('Gemini API error:', e.message);
     return {
       complexityScore: 0,
-      analysis: "Analysis failed due to API error",
+      analysis: "Analysis failed due to API error: " + e.message,
       suggestions: ["Could not generate suggestions"],
       bigO: "O(1)",
       timeComplexity: "O(1)",
@@ -178,8 +211,7 @@ async function analyzeCodeWithGemini(code, language) {
 // Detailed BigO analysis
 async function analyzeBigOWithGemini(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = getModel();
 
     const prompt = `
     Provide a detailed BigO notation analysis for the following ${language} code:
@@ -226,7 +258,7 @@ async function analyzeBigOWithGemini(code, language) {
         averageCase: "O(1)",
         worstCase: "O(1)"
       },
-      explanation: "Analysis failed due to API error",
+      explanation: "Analysis failed due to API error: " + e.message,
       bottlenecks: []
     };
   }
@@ -235,8 +267,7 @@ async function analyzeBigOWithGemini(code, language) {
 // Get optimization suggestions
 async function getOptimizationSuggestions(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = getModel();
 
     const prompt = `
     Provide detailed optimization suggestions for the following ${language} code:
@@ -279,8 +310,7 @@ async function getOptimizationSuggestions(code, language) {
   }
 }
 
-// Add this at the end (replace app.listen):
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-}
-module.exports = app; // Required for Vercel serverless
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log('Test endpoint: http://localhost:5000/api/test');
+});
