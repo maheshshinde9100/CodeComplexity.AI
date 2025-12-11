@@ -10,6 +10,26 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.use(cors());
 app.use(bodyParser.json());
 
+// Helper function to get model
+function getModel() {
+  try {
+    // PRIMARY CHOICE: Use the stable, free Gemini 2.5 Flash model
+    return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  } catch (error) {
+    console.error("Error with gemini-2.5-flash:", error.message);
+    // FALLBACK: Try the Flash-Lite model if the primary fails
+    try {
+      console.log("Falling back to gemini-2.5-flash-lite...");
+      return genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+    } catch (error2) {
+      // FINAL FALLBACK: Try a preview model
+      console.error("Error with fallback model:", error2.message);
+      console.log("Trying preview model...");
+      return genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
+    }
+  }
+}
+
 app.post('/api/calculate', async (req, res) => {
   try {
     const { code, language = 'javascript' } = req.body;
@@ -93,8 +113,8 @@ app.post('/api/optimize', async (req, res) => {
 // Enhanced code analysis with BigO notation
 async function analyzeCodeWithGemini(code, language) {
   try {
-    // Use the current stable Gemini 1.5 Flash model
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Use the helper function to get the best available model
+    const model = getModel();
 
     const prompt = `
     Analyze the following ${language} code comprehensively and provide:
@@ -138,7 +158,7 @@ async function analyzeCodeWithGemini(code, language) {
     console.error('Gemini API error:', e);
     return {
       complexityScore: 0,
-      analysis: "Analysis failed due to API error",
+      analysis: "Analysis failed due to API error: " + e.message,
       suggestions: ["Could not generate suggestions"],
       bigO: "O(1)",
       timeComplexity: "O(1)",
@@ -155,7 +175,7 @@ async function analyzeCodeWithGemini(code, language) {
 
 async function analyzeBigOWithGemini(code, language) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = getModel();
 
     const prompt = `
     Provide a detailed BigO notation analysis for the following ${language} code:
@@ -202,7 +222,7 @@ async function analyzeBigOWithGemini(code, language) {
         averageCase: "O(1)",
         worstCase: "O(1)"
       },
-      explanation: "Analysis failed due to API error",
+      explanation: "Analysis failed due to API error: " + e.message,
       bottlenecks: []
     };
   }
@@ -210,7 +230,7 @@ async function analyzeBigOWithGemini(code, language) {
 
 async function getOptimizationSuggestions(code, language) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = getModel();
 
     const prompt = `
     Provide detailed optimization suggestions for the following ${language} code:
@@ -252,4 +272,5 @@ async function getOptimizationSuggestions(code, language) {
     };
   }
 }
+
 module.exports = app;
